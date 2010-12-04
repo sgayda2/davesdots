@@ -46,6 +46,7 @@ set noerrorbells           " Disable error bells
 set visualbell             " Turn visual bell on
 set t_vb=                  " Make the visual bell emit nothing
 set showcmd                " Show the current command
+set number
 
 set diffopt+=iwhite
 
@@ -82,7 +83,7 @@ if has('eval')
 endif
 
 if has('autocmd')
-   autocmd BufEnter * :call WideFold()
+   "autocmd BufEnter * :call WideFold()
    if has('eval')
       autocmd BufReadPost * :call s:DetectDetectIndent()
    endif
@@ -180,7 +181,7 @@ if has('autocmd')
 
    " mutt does not like UTF-8
    autocmd BufRead,BufNewFile *
-      \ if &ft == 'mail' | set fileencoding=iso8859-1 | endif
+      \ if &ft == 'mail' | set fileencoding=iso8859-1 tw=72 | endif
 
    " fix up procmail rule detection
    autocmd BufRead procmailrc :setfiletype procmail
@@ -325,6 +326,9 @@ nmap <silent> <F12> :silent set number!<CR>
 imap <silent> <F12> <C-O>:silent set number!<CR>
 noremap <silent> <F4> :set hls!<CR>
 
+" Map Explore to F2
+nmap <silent> <F2> :NERDTreeToggle<CR>
+
 " Don't force column 0 for #
 inoremap # X<BS>#
 
@@ -383,9 +387,10 @@ if v:version >= 700
    let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
    let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
    let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e. parameters) in popup window
-   map <C-F12> :!$HOME/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+   map <silent><F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
    " add current directory's generated tags file to available tags
    set tags+=./tags
+   set tags+=~/.vim/tags/gl
 endif
 
 set t_RV=

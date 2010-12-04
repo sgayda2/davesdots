@@ -35,3 +35,6 @@
 	excludesfile = ~/.gitignore
 [push]
 	default = matching
+[user]
+	name = Daniel Freedman
+	email = dfreedm2@uiuc.edu

@@ -1,0 +1,13 @@
+command -v dcraw >/dev/null 2>&1 && alias dcraw='dcraw -H 2 -q 3 -o 0'
+
+command -v xrandr >/dev/null 2>&1 && alias vgaon='xrandr --output VGA1 --mode 1024x768 --right-of LVDS1' && alias vgaoff='xrandr --output VGA1 --off'
+
+command -v xclip >/dev/null 2>&1 && alias xpaste='xclip -o | xclip -selection c'
+
+command -v rubber >/dev/null 2>&1 && alias rubber='rubber --pdf'
+
+command -v mp3fs >/dev/null 2>&1 && alias mountmp3='sudo mp3fs ~/Music,128 /mnt/mp3 -o allow_other,ro'
+
+command -v pagsh.openafs >/dev/null 2>&1 && alias adminhat="pagsh.openafs -c 'export KRB5CCNAME=${KRB5CCNAME}_$$; kinit $USER/admin; klist -s && aklog && $SHELL; kdestroy; unlog'"
+
+# vim: set ft=sh ts=3 sw=3 et:

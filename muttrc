@@ -1,0 +1,153 @@
+# work with gmail (where i have everything bounce)
+set imap_user = 'dfreedm2'
+set spoolfile = imaps://imap.gmail.com:993/INBOX
+set folder = imaps://imap.gmail.com:993
+set postponed = "imaps://imap.gmail.com:993/Drafts"
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+set timeout = 60
+set mail_check = 30
+set net_inc = 5
+set sort = threads
+set sort_aux = last-mailbox-order
+set query_command = '~/.mutt/mutt_ldap_query.py %s'
+set use_envelope_from
+set envelope_from_address = "dfreedm2@uiuc.edu"
+
+# Use these folders
+mailboxes ! =INBOX \
+            =[Gmail]/Spam \
+            =[Gmail]/"Sent Mail" \
+            =Admin \
+            =Exec \
+            =Conference \
+            =Food \
+            =SigMil \
+            =SigDave \
+            =LUG \
+            =Membership \
+            =sigsoft-l \
+            =Save \
+            =OpenAFS \
+            =MechMania \
+            =sls-l \
+            =AMP \
+            =410 \
+            =PPL \
+            =429
+
+# Set up my sig
+set from = 'Daniel Freedman <dfreedm2@uiuc.edu>'
+set use_from = yes
+set signature = "~/.mutt/sig"
+
+# keybindings
+# j/k should scroll in messages. h for previous, l is next!
+bind pager j        next-line
+bind pager k        previous-line
+bind pager h        previous-undeleted
+bind pager H        previous-entry
+bind pager L        next-entry
+bind pager l        next-undeleted
+bind pager <Space>  next-page
+bind pager \;       previous-page
+bind index G        imap-fetch-mail
+bind index \;       previous-page
+bind index ,        tag-prefix
+bind index i        display-message
+
+# save hooks
+save-hook '~f nagios@status\.acm\.uiuc\.edu'    =Admin
+save-hook '~f logcheck@acm\.uiuc\.edu'          =Admin
+save-hook '~h root@.*\.?acm\.uiuc\.edu'         =Admin
+save-hook '~h admin@acm\.uiuc\.edu'             =Admin
+save-hook '~h webmaster@acm\.uiuc\.edu'         =Admin
+save-hook '~h mailmain@acm\.uiuc\.edu'          =Admin
+save-hook '~h news@(news)*\.acm\.uiuc\.edu'     =Admin
+save-hook '~h film-l@acm\.uiuc\.edu'            =Film
+save-hook '~h exec@acm\.uiuc\.edu'              =Exec
+save-hook '~h conference@acm\.uiuc\.edu'        =Conference
+save-hook '~h lug-l@acm\.uiuc\.edu'             =LUG
+save-hook '~h sigmil-l@acm\.uiuc\.edu'          =SigMil
+save-hook '~h food-l@acm\.uiuc\.edu'            =Food
+save-hook '~t membership-l@acm\.uiuc\.edu'      =Membership
+save-hook '~t cluster-l@acm\.uiuc\.edu'         =Membership
+save-hook '~t jobs-l@acm\.uiuc\.edu'            =Membership
+save-hook '~h sigsoft-l@acm\.uiuc\.edu'         =sigsoft-l
+save-hook '~h openafs-announce.*@openafs\.org'  =OpenAFS
+save-hook '~h mm-.*@acm\.uiuc\.edu'             =MechMania
+save-hook '~h sls-l@acm\.uiuc\.edu'             =sls-l
+save-hook '~h sigdave-l@acm\.uiuc\.edu'         =SigDave
+save-hook '~h amp-l@acm\.uiuc\.edu'             =AMP
+save-hook '~h .*cs410sp10.*@cs\.uiuc\.edu'      =410
+save-hook '~h sysadmin-ppl@cs\.uiuc\.edu'       =PPL
+save-hook '~f redmine@redmine\.quad341\.com'    =429
+save-hook '~s Conferenceware'                   =429
+save-hook '~f engineering100@gmail\.com'        =ENG100
+save-hook '~h cs418fa10uiuc@googlegroups\.com'  =CS418
+
+#last one, catchall
+save-hook '~f .*'                               =Save
+
+#folder hooks for faster reading
+folder-hook .       'set read_inc=1000'
+folder-hook ^imap   'set read_inc=100'
+
+#Fuck FCC
+fcc-save-hook .*    /dev/null
+
+# Compress folders
+open-hook \\.bz2$ "bzip2 -cd %f > %t"
+close-hook \\.bz2$ "bzip2 -c %t > %f"
+append-hook \\.bz2$ "bzip2 -c %t >> %f"
+
+# Looser globbing
+set nostrict_threads
+
+# Don't wait for sendmail
+set sendmail_wait=-1
+
+set fcc_clear=no
+
+# What is old even?
+set mark_old=no
+
+# Make emails pretty when printed.
+set print_command="a2ps -1 --borders=no -g -Email"
+
+# Don't ask before appending emails to an existing mailbox; just do it.
+set confirmappend=no
+# Page-down at the end of a message should not go to the next message.
+set pager_stop
+
+# If the body of the email would trigger ">From" munging, use a character
+# encoding that will avoid the problem.
+set encode_from=yes
+
+# Debian's mutt will let me set titlebars.
+set xterm_set_titles=yes
+
+#aliases
+alias admin         admin@acm.uiuc.edu
+alias exec          exec@acm.uiuc.edu
+alias conference    conference@acm.uiuc.edu
+alias sigmil        sigmil-l@acm.uiuc.edu
+alias top4          top4@acm.uiuc.edu
+alias lug           lug-l@acm.uiuc.edu
+alias mm            mm-dev@acm.uiuc.edu
+alias sigdave       sigdave-l@acm.uiuc.edu
+alias ppl           sysadmin-ppl@cs.uiuc.edu
+alias amp           amp-l@acm.uiuc.edu
+alias userhelp      userhelp@cs.uiuc.edu
+alias eng100        engineering100@gmail.com
+
+# header weeding
+ignore *
+unignore from date subject to cc reply-to
+
+# prefer anything but HTML
+alternative_order text/enriched text/plain text/html
+
+# display w3m-rendered HTML inline
+auto_view text/html

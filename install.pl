@@ -45,7 +45,6 @@ my %links = (
 
 	vim      => '.vim',
 	vimrc    => '.vimrc',
-	_vimrc   => '_vimrc',
 	gvimrc   => '.gvimrc',
 
 	commonsh => '.commonsh',
@@ -86,6 +85,11 @@ my %links = (
 	'git-untrack-ignored' => 'bin/git-untracked-ignored',
 
 	gdbinit => '.gdbinit',
+	mutt => '.mutt',
+	muttrc => '.muttrc',
+	'tmux.conf' => '.tmux.conf',
+	Xmodmap => '.Xmodmap',
+	irssi => '.irssi'
 );
 
 my $contained = (substr $scriptdir, 0, length($home)) eq $home;
@@ -101,6 +105,10 @@ if ($? != 0) {
 	warn "Could not compile answerback.\n";
 } else {
 	$links{"answerback.$uname"} = "bin/answerback.$uname";
+}
+
+if ($ENV{OS} && $ENV{OS} eq "Windows_NT") {
+	$links{_vimrc} = "_vimrc";
 }
 
 

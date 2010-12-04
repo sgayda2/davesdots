@@ -1,1 +1,17 @@
+# sort files
+--sort-files
+
+# DWIW case searches
+--smart-case
+
+# Always color
+--color
+
+# Group together by file
+--group
+
+# Always show filename
+-H
+
+# Assembly is .S
 --type-add=asm=.S
