@@ -15,26 +15,28 @@ else
 fi
 
 # Bind keys the way I like em
-if [ -x /usr/bin/xbindkeys ]; then
-    /usr/bin/xbindkeys
-fi
+[ -x /usr/bin/xbindkeys ] && /usr/bin/xbindkeys
 
 # Start screensaver
 if [ -x /usr/bin/gnome-screensaver ]; then
     gnome-screensaver
 elif [ -x /usr/bin/xscreensaver ]; then
-    xscreensaver -no-splash&
+    xscreensaver -no-splash &
 fi
 
 #Activate xmodmap
 xmodmap ~/.Xmodmap
 
 # My Laptop stuff
-if [ $(hostname) == "centurion" ]; then
-    #trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --height 10 --transparent true --tint 0x000000 &
-    nm-applet&
-    pidgin&
+if [ ${USER} = "azakus" ]; then
+    trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --height 10 --transparent true --tint 0x000000 &
+    nm-applet &
+    blueman-applet &
+    pidgin &
+    xfce4-volumed
+    dropbox
+    toggle_touchpad
 fi
 
 # Start xmonad
-#exec xmonad
+exec xmonad
