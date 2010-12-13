@@ -34,7 +34,7 @@ if [ ${USER} = "azakus" ]; then
     blueman-applet &
     pidgin &
     xfce4-volumed
-    dropbox
+    dropbox &
     toggle_touchpad
 fi
 
