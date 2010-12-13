@@ -24,6 +24,7 @@ import System.IO(hPutStrLn)
 -- Things that should always float
 myFloatHook = composeAll [
 	className =? "qemu" --> doFloat
+	, title =? "xfce4-notifyd" --> doIgnore
 	]
 
 myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed
@@ -51,6 +52,7 @@ main = do
 				, ppTitle  = xmobarColor "#8AE234" ""
 				}
 			, terminal = "xterm"
+			, modMask = mod4Mask
 			}
 			`additionalKeysP`
 			[ ("M-p", shellPrompt defaultXPConfig { position = Top })
