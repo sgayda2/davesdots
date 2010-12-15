@@ -27,7 +27,7 @@ myFloatHook = composeAll [
 	, title =? "xfce4-notifyd" --> doIgnore
 	]
 
-myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed
+myLayoutHook = tiled ||| Grid ||| simpleTabbed
 	where
 		-- default tiling algorithm partitions the screen into two panes
 		tiled   = Tall nmaster delta ratio
