@@ -1,12 +1,11 @@
 #!/bin/sh
 # Load resources for boot
 
-# Check for .background
-if [ -n .background ]; then
-    if [ -x /usr/bin/display ]; then
+# Set up a nice background
+
+if [ -e .background ]; then
+    if command -v display; then
         display -antialias -backdrop -window root .background
-    elif [ -x /usr/bin/xli ]; then
-        xli -onroot -quiet -fillscreen .background
     else
         xsetroot -gray
     fi
@@ -15,17 +14,13 @@ else
 fi
 
 # Bind keys the way I like em
-[ -x /usr/bin/xbindkeys ] && /usr/bin/xbindkeys
+command -v xbindkeys > /dev/null 2>&1 && xbindkeys
 
 # Start screensaver
-if [ -x /usr/bin/gnome-screensaver ]; then
-    gnome-screensaver
-elif [ -x /usr/bin/xscreensaver ]; then
-    xscreensaver -no-splash &
-fi
+command -v xscreensaver > /dev/null 2>&1 && xscreensaver -no-splash &
 
 #Activate xmodmap
-xmodmap ~/.Xmodmap
+command -v xmodmap > /dev/null 2>&1 && xmodmap ~/.Xmodmap
 
 # My Laptop stuff
 if [ ${USER} = "azakus" ]; then
@@ -33,8 +28,8 @@ if [ ${USER} = "azakus" ]; then
     nm-applet &
     blueman-applet &
     pidgin &
-    xfce4-volumed
     dropbox &
+    xfce4-volumed
     ~/bin/toggle_touchpad
 fi
 
