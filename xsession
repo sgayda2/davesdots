@@ -1,17 +1,11 @@
 #!/bin/sh
-# Load resources for boot
+# Load resources for login
 
-# Set up a nice background
+# start with a clean background
+xsetroot -gray
 
-if [ -e .background ]; then
-    if command -v display; then
-        display -antialias -backdrop -window root .background
-    else
-        xsetroot -gray
-    fi
-else
-    xsetroot -gray
-fi
+# Set up a nice background if it exists
+[ -e .background ] && command -v display > /dev/null 2>&1 && display -antialias -backdrop -window root .background
 
 # Bind keys the way I like em
 command -v xbindkeys > /dev/null 2>&1 && xbindkeys
