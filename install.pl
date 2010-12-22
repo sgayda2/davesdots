@@ -92,7 +92,8 @@ my %links = (
 	muttrc => '.muttrc',
 	'tmux.conf' => '.tmux.conf',
 	Xmodmap => '.Xmodmap',
-	irssi => '.irssi'
+	irssi => '.irssi',
+	aptitude => '.aptitude'
 );
 
 my $contained = (substr $scriptdir, 0, length($home)) eq $home;
