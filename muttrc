@@ -11,9 +11,8 @@ set mail_check = 30
 set net_inc = 5
 set sort = threads
 set sort_aux = last-mailbox-order
-set query_command = '~/.mutt/mutt_ldap_query.py %s'
+set query_command = 'goobook query %s'
 set use_envelope_from
-set envelope_from_address = "dfreedm2@uiuc.edu"
 
 # Use these folders
 mailboxes ! =INBOX \
@@ -38,7 +37,7 @@ mailboxes ! =INBOX \
             =429
 
 # Set up my sig
-set from = 'Daniel Freedman <dfreedm2@uiuc.edu>'
+set from = 'Daniel Freedman <dfreedm2@gmail.com>'
 set use_from = yes
 set signature = "~/.mutt/sig"
 
@@ -131,16 +130,7 @@ set xterm_set_titles=yes
 #aliases
 alias admin         admin@acm.uiuc.edu
 alias exec          exec@acm.uiuc.edu
-alias conference    conference@acm.uiuc.edu
-alias sigmil        sigmil-l@acm.uiuc.edu
 alias top4          top4@acm.uiuc.edu
-alias lug           lug-l@acm.uiuc.edu
-alias mm            mm-dev@acm.uiuc.edu
-alias sigdave       sigdave-l@acm.uiuc.edu
-alias ppl           sysadmin-ppl@cs.uiuc.edu
-alias amp           amp-l@acm.uiuc.edu
-alias userhelp      userhelp@cs.uiuc.edu
-alias eng100        engineering100@gmail.com
 
 # header weeding
 ignore *
