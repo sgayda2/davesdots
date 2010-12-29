@@ -49,7 +49,7 @@ main = do
 			, logHook    = dynamicLogWithPP $ xmobarPP
 				{ ppOutput = hPutStrLn xmproc
 				, ppUrgent = xmobarColor "#CC0000" "" . wrap "**" "**"
-				, ppTitle  = xmobarColor "#8AE234" ""
+				, ppTitle  = xmobarColor "#8AE234" "" . shorten 150
 				}
 			, terminal = "xterm"
 			, modMask = mod4Mask
