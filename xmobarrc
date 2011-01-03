@@ -7,7 +7,7 @@ Config { font = "xft:Incosolata-7"
                     , Run Cpu ["-L","3","-H","50","--normal","#8AE234","--high","#CC0000"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
-                    , Run Com "/home/azakus/bin/thinkbat" [] "thinkbat" 1000
+                    , Run Com "/home/azakus/bin/thinkbat" [] "thinkbat" 200
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run StdinReader
                     ]
