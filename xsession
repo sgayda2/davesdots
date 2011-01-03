@@ -16,6 +16,9 @@ command -v xscreensaver > /dev/null 2>&1 && xscreensaver -no-splash &
 #Activate xmodmap
 command -v xmodmap > /dev/null 2>&1 && xmodmap ~/.Xmodmap
 
+#Start up pulse if we have it
+command -v pulseaudio > /dev/null 2>&1 && pulseaudio -D
+
 # My Laptop stuff
 if [ ${USER} = "azakus" ]; then
     trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 10 --transparent true --tint 0x000000 &
