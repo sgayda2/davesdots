@@ -45,7 +45,7 @@ my %links = (
 
 	vim      => '.vim',
 	vimrc    => '.vimrc',
-	_vimrc   => '_vimrc',
+#	_vimrc   => '_vimrc',
 	gvimrc   => '.gvimrc',
 
 	commonsh => '.commonsh',
@@ -74,7 +74,7 @@ my %links = (
 	xmobarrc    => '.xmobarrc',
 	'xmonad.hs' => '.xmonad/xmonad.hs',
 
-	'Wombat.xccolortheme'  => 'Library/Application Support/Xcode/Color Themes/Wombat.xccolortheme',
+	#'Wombat.xccolortheme'  => 'Library/Application Support/Xcode/Color Themes/Wombat.xccolortheme',
 #	'Wombat.dvtcolortheme' => 'Library/Developer/Xcode/UserData/FontAndColorThemes/Wombat.dvtcolortheme',
 
 	gitconfig => '.gitconfig',
