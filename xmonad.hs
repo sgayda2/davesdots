@@ -19,6 +19,7 @@ import XMonad.Prompt.Shell(shellPrompt)
 import XMonad.Prompt.Window
 
 import System.IO(hPutStrLn)
+import System.Posix.Unistd(getSystemID, nodeName)
 
 -- Things that should always float
 myFloatHook = composeAll
@@ -41,11 +42,17 @@ myLayoutHook = tiled ||| Grid ||| simpleTabbed
 		-- Percent of screen to increment by when resizing panes
 		delta   = 3/100
 
+getHostKey :: String -> KeyMask
+getHostKey hostname =
+	if hostname `elem` ["beaujolais", "urbania"] then mod4Mask
+	else mod1Mask
+
 main = do
+	host <- fmap nodeName getSystemID -- TODO: make me mighty
 	xmproc <- spawnPipe "xmobar"
 	xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
 			{ manageHook = manageDocks <+> myFloatHook <+> manageHook defaultConfig
-			, modMask = mod4Mask
+			, modMask = getHostKey host
 			, layoutHook = avoidStruts $ smartBorders $ myLayoutHook
 			, logHook    = dynamicLogWithPP $ xmobarPP
 				{ ppOutput = hPutStrLn xmproc

@@ -1,17 +1,18 @@
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+Config { font = "xft:Monospace-9"
        , bgColor = "black"
        , fgColor = "grey"
-       , position = Top
+       , position = TopW L 90
        , lowerOnStart = True
-       , commands = [ Run Network "eth0" ["-L","0","-H","32","--normal","#8AE234","--high","#CC0000"] 10
-                    , Run Cpu ["-L","3","-H","50","--normal","#8AE234","--high","#CC0000"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+       , commands = [ Run Network "wlan0" ["-L","0","-H","256","--normal","#8AE234","--high","#CC0000", "-t", "Net: <rx>k/<tx>k"] 10
+                    , Run Weather "KCMI" ["-t","<tempF>F <skyCondition>","-L","60","-H","77","--normal","#8ae234","--high","#cc0000","--low","#729fcf"] 18000
+                    , Run Cpu ["-L","10","-H","50","--normal","#8AE234","--high","#CC0000"] 10
+                    , Run Memory ["-t","<usedratio>%"] 10
+                    , Run Swap ["-t","<usedratio>%"] 30
+                    , Run Battery ["BAT0", "-t","Batt: <left>%/<timeleft>"] 30
+                    , Run Date "%a %b %_d %H:%M" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% | %cpu% | %memory% * %swap% | %eth0% }{ <fc=#ee9a00>%date%</fc> | %uname%"
+       , template = "%StdinReader% }{ %battery% | %cpu% | Mem: %memory%/%swap% | %wlan0% | <fc=#ee9a00>%date%</fc> | %KCMI%"
        }
