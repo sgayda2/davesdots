@@ -13,7 +13,6 @@ import XMonad.Hooks.ManageDocks
 
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP)
-import XMonad.Util.Scratchpad
 
 import XMonad.Prompt
 import XMonad.Prompt.Shell(shellPrompt)
@@ -22,11 +21,13 @@ import XMonad.Prompt.Window
 import System.IO(hPutStrLn)
 
 -- Things that should always float
-myFloatHook = composeAll [
-	className =? "qemu" --> doFloat
+myFloatHook = composeAll
+	[ className =? "qemu" --> doFloat
+	, title =? "xfce4-notifyd" --> doIgnore
 	]
 
-myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed
+
+myLayoutHook = tiled ||| Grid ||| simpleTabbed
 	where
 		-- default tiling algorithm partitions the screen into two panes
 		tiled   = Tall nmaster delta ratio
@@ -41,23 +42,25 @@ myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed
 		delta   = 3/100
 
 main = do
-	xmproc <- spawnPipe "~/bin/xmobar"
+	xmproc <- spawnPipe "xmobar"
 	xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
-			{ manageHook = manageDocks <+> myFloatHook <+> manageHook defaultConfig <+> scratchpadManageHook (W.RationalRect 0.25 0.25 0.5 0.5)
+			{ manageHook = manageDocks <+> myFloatHook <+> manageHook defaultConfig
+			, modMask = mod4Mask
 			, layoutHook = avoidStruts $ smartBorders $ myLayoutHook
 			, logHook    = dynamicLogWithPP $ xmobarPP
 				{ ppOutput = hPutStrLn xmproc
-				, ppUrgent = xmobarColor "#CC0000" "" . wrap "**" "**"
+				, ppUrgent = xmobarColor "#FF0000" "" . wrap "**" "**"
 				, ppTitle  = xmobarColor "#8AE234" ""
 				}
-			, terminal = "xterm"
 			}
 			`additionalKeysP`
 			[ ("M-p", shellPrompt defaultXPConfig { position = Top })
 			, ("M-S-a", windowPromptGoto defaultXPConfig { position = Top })
 			, ("M-a", windowPromptBring defaultXPConfig { position = Top })
 			, ("M-S-l", spawn "~/bin/lock")
+			, ("M-<Left>", moveTo Prev HiddenNonEmptyWS)
 			, ("M-S-<Left>", shiftToPrev)
+			, ("M-<Right>", moveTo Next HiddenNonEmptyWS)
 			, ("M-S-<Right>", shiftToNext)
 			, ("M-<Up>", windows W.focusUp)
 			, ("M-S-<Up>", windows W.swapUp)
@@ -66,5 +69,4 @@ main = do
 			, ("M-`", toggleWS)
 			, ("M-s", moveTo Next EmptyWS)
 			, ("M-S-s", shiftTo Next EmptyWS)
-			, ("M-g", scratchpadSpawnAction defaultConfig { terminal = "xterm" })
 			]
