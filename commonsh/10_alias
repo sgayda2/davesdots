@@ -95,3 +95,7 @@ alias df='df -h'
 alias du='du -h'
 
 alias ping='ping -c4'
+
+if command -v pagsh.openafs >/dev/null 2>&1; then
+	alias adminhat="pagsh.openafs -c 'export KRB5CCNAME=${KRB5CCNAME}_$$; kinit $USER/admin; klist -s && aklog && $SHELL; kdestroy; unlog'"
+fi
