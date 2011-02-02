@@ -17,7 +17,7 @@ command -v xscreensaver > /dev/null 2>&1 && xscreensaver -no-splash &
 command -v xmodmap > /dev/null 2>&1 && xmodmap ~/.Xmodmap
 
 #Start up pulse if we have it
-command -v pulseaudio > /dev/null 2>&1 && pulseaudio -D
+command -v pulseaudio > /dev/null 2>&1 && pulseaudio --start
 
 # My Laptop stuff
 if [ ${USER} = "azakus" ]; then
