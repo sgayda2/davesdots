@@ -19,6 +19,8 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell(shellPrompt)
 import XMonad.Prompt.Window
 
+import XMonad.Config.Gnome
+
 import System.IO(hPutStrLn)
 
 -- Things that should always float
@@ -43,9 +45,9 @@ myLayoutHook = tiled ||| Grid ||| simpleTabbed
 
 main = do
 	xmproc <- spawnPipe "~/bin/xmobar"
-	xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
+	xmonad $ withUrgencyHook NoUrgencyHook gnomeConfig
 			{ manageHook = manageDocks <+> myFloatHook <+> manageHook defaultConfig <+> scratchpadManageHook (W.RationalRect 0.25 0.25 0.5 0.5)
-			, layoutHook = avoidStruts $ smartBorders $ myLayoutHook
+			, layoutHook = avoidStruts $ smartBorders (layoutHook gnomeConfig)
 			, logHook    = dynamicLogWithPP $ xmobarPP
 				{ ppOutput = hPutStrLn xmproc
 				, ppUrgent = xmobarColor "#CC0000" "" . wrap "**" "**"
