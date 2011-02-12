@@ -6,6 +6,7 @@ import XMonad.Actions.CycleWS
 import XMonad.Layout.Grid
 import XMonad.Layout.Tabbed
 import XMonad.Layout.NoBorders(smartBorders)
+import XMonad.Layout.ResizableTile
 
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.DynamicLog
@@ -31,7 +32,7 @@ myFloatHook = composeAll
 myLayoutHook = tiled ||| Grid ||| simpleTabbed
 	where
 		-- default tiling algorithm partitions the screen into two panes
-		tiled   = Tall nmaster delta ratio
+		tiled   = ResizableTall nmaster delta ratio []
 
 		-- The default number of windows in the master pane
 		nmaster = 1
@@ -76,4 +77,6 @@ main = do
 			, ("M-`", toggleWS)
 			, ("M-s", moveTo Next EmptyWS)
 			, ("M-S-s", shiftTo Next EmptyWS)
+			, ("M-[", sendMessage MirrorExpand)
+			, ("M-]", sendMessage MirrorShrink)
 			]
