@@ -311,7 +311,7 @@ if has('eval')
 endif
 
 " w!! for sudo w!
-"cmap w!! w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % >/dev/null
 
 " clear search
 "nnoremap <esc> :noh<return><esc>

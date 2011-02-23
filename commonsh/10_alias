@@ -99,3 +99,7 @@ alias ping='ping -c4'
 if command -v pagsh.openafs >/dev/null 2>&1; then
 	alias adminhat="pagsh.openafs -c 'export KRB5CCNAME=${KRB5CCNAME}_$$; kinit $USER/admin; klist -s && aklog && $SHELL; kdestroy; unlog'"
 fi
+
+if command -v todo.pl >/dev/null 2>/dev/null; then
+	alias hmtasks=todo.pl
+fi
