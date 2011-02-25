@@ -21,12 +21,9 @@ mailboxes ! =INBOX \
             =Admin \
             =Exec \
             =Conference \
-            =Food \
             =SigMil \
-            =SigDave \
             =LUG \
             =Membership \
-            =sigsoft-l \
             =Save \
             =OpenAFS \
             =MechMania \
@@ -64,50 +61,33 @@ save-hook '~h admin@acm\.uiuc\.edu'             =Admin
 save-hook '~h webmaster@acm\.uiuc\.edu'         =Admin
 save-hook '~h mailmain@acm\.uiuc\.edu'          =Admin
 save-hook '~h news@(news)*\.acm\.uiuc\.edu'     =Admin
-save-hook '~h film-l@acm\.uiuc\.edu'            =Film
 save-hook '~h exec@acm\.uiuc\.edu'              =Exec
 save-hook '~h conference@acm\.uiuc\.edu'        =Conference
 save-hook '~h lug-l@acm\.uiuc\.edu'             =LUG
-save-hook '~h sigmil-l@acm\.uiuc\.edu'          =SigMil
-save-hook '~h food-l@acm\.uiuc\.edu'            =Food
 save-hook '~t membership-l@acm\.uiuc\.edu'      =Membership
 save-hook '~t cluster-l@acm\.uiuc\.edu'         =Membership
 save-hook '~t jobs-l@acm\.uiuc\.edu'            =Membership
-save-hook '~h sigsoft-l@acm\.uiuc\.edu'         =sigsoft-l
 save-hook '~h openafs-announce.*@openafs\.org'  =OpenAFS
 save-hook '~h mm-.*@acm\.uiuc\.edu'             =MechMania
-save-hook '~h sls-l@acm\.uiuc\.edu'             =sls-l
-save-hook '~h sigdave-l@acm\.uiuc\.edu'         =SigDave
 save-hook '~h amp-l@acm\.uiuc\.edu'             =AMP
-save-hook '~h .*cs410sp10.*@cs\.uiuc\.edu'      =410
 save-hook '~h sysadmin-ppl@cs\.uiuc\.edu'       =PPL
-save-hook '~f redmine@redmine\.quad341\.com'    =429
-save-hook '~s Conferenceware'                   =429
-save-hook '~f engineering100@gmail\.com'        =ENG100
-save-hook '~h cs418fa10uiuc@googlegroups\.com'  =CS418
 
 #last one, catchall
 save-hook '~f .*'                               =Save
 
 #folder hooks for faster reading
-folder-hook .       'set read_inc=1000'
-folder-hook ^imap   'set read_inc=100'
+folder-hook '.'       'set read_inc=1000'
+folder-hook '^imap'   'set read_inc=100'
 
 #Fuck FCC
-fcc-save-hook .*    /dev/null
-
-# Compress folders
-open-hook \\.bz2$ "bzip2 -cd %f > %t"
-close-hook \\.bz2$ "bzip2 -c %t > %f"
-append-hook \\.bz2$ "bzip2 -c %t >> %f"
+fcc-save-hook '.*'    /dev/null
+set fcc_clear=no
 
 # Looser globbing
 set nostrict_threads
 
 # Don't wait for sendmail
 set sendmail_wait=-1
-
-set fcc_clear=no
 
 # What is old even?
 set mark_old=no
@@ -117,6 +97,7 @@ set print_command="a2ps -1 --borders=no -g -Email"
 
 # Don't ask before appending emails to an existing mailbox; just do it.
 set confirmappend=no
+
 # Page-down at the end of a message should not go to the next message.
 set pager_stop
 
