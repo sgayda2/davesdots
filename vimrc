@@ -393,4 +393,8 @@ if v:version >= 700
    set tags+=~/.vim/tags/gl
 endif
 
+" ------ Pathogen -------
+call pathogen#runtime_append_all_bundles()
+nnoremap <F5> :GundoToggle<CR>
+
 set t_RV=
