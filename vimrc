@@ -397,4 +397,6 @@ endif
 call pathogen#runtime_append_all_bundles()
 nnoremap <F5> :GundoToggle<CR>
 
+" ------ Ack ------
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 set t_RV=
