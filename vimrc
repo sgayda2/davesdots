@@ -50,6 +50,9 @@ set number
 
 set diffopt+=iwhite
 
+" ------ Pathogen -------
+call pathogen#runtime_append_all_bundles()
+
 " ---- Filetypes ----
 if has('syntax')
    syntax on
@@ -393,8 +396,7 @@ if v:version >= 700
    set tags+=~/.vim/tags/gl
 endif
 
-" ------ Pathogen -------
-call pathogen#runtime_append_all_bundles()
+" ----- Gundo -----
 nnoremap <F5> :GundoToggle<CR>
 
 " ------ Ack ------
