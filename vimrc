@@ -51,6 +51,11 @@ set number
 set diffopt+=iwhite
 
 " ------ Pathogen -------
+"  Disable filetype so pathogen can load ftdetect modules
+"  Some system vimrcs do this too early
+if has('eval')
+   filetype off
+endif
 call pathogen#runtime_append_all_bundles()
 
 " ---- Filetypes ----
