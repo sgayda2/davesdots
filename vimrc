@@ -397,7 +397,7 @@ if v:version >= 700
    let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e. parameters) in popup window
    map <silent><F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
    " add current directory's generated tags file to available tags
-   set tags+=./tags
+   set tags+=tags;
    set tags+=~/.vim/tags/gl
 endif
 
