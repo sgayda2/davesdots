@@ -24,11 +24,16 @@ channels = (
   { name = "#cs"; chatnet = "NullIRC"; autojoin = "Yes"; },
   { name = "#usenet"; chatnet = "NullIRC"; autojoin = "Yes"; },
   { name = "#acm"; chatnet = "drwilco"; autojoin = "Yes"; },
-  {
+  { 
     name = "#webos-internals";
     chatnet = "FreeNode";
     autojoin = "Yes";
   },
+  { 
+    name = "#webos";
+    chatnet = "FreeNode";
+    autojoin = "Yes";
+  }
 );
 
 aliases = {
@@ -221,17 +226,13 @@ ignores = (
     channels = ( "#webos-internals" );
   },
   {
+    level = "JOINS PARTS QUITS MODES NICKS";
+    channels = ( "#webos" );
+  },
+  {
     level = "CTCPS JOINS PARTS QUITS MODES NICKS";
     channels = ( "#usenet" );
   },
   { level = "JOINS PARTS QUITS MODES NICKS"; channels = ( "#cs" ); },
-  {
-    level = "JOINS PARTS QUITS MODES NICKS";
-    channels = ( "#ooc-lang" );
-  },
-  {
-    level = "JOINS PARTS QUITS MODES NICKS";
-    channels = ( "&bitlbee" );
-  }
 );
 logs = { };
