@@ -29,11 +29,7 @@ channels = (
     chatnet = "FreeNode";
     autojoin = "Yes";
   },
-  { 
-    name = "#webos";
-    chatnet = "FreeNode";
-    autojoin = "Yes";
-  }
+  { name = "#webos"; chatnet = "FreeNode"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -225,7 +221,7 @@ ignores = (
     level = "JOINS PARTS QUITS MODES NICKS";
     channels = ( "#webos-internals" );
   },
-  {
+  { 
     level = "JOINS PARTS QUITS MODES NICKS";
     channels = ( "#webos" );
   },
@@ -233,6 +229,6 @@ ignores = (
     level = "CTCPS JOINS PARTS QUITS MODES NICKS";
     channels = ( "#usenet" );
   },
-  { level = "JOINS PARTS QUITS MODES NICKS"; channels = ( "#cs" ); },
+  { level = "JOINS PARTS QUITS MODES NICKS"; channels = ( "#cs" ); }
 );
 logs = { };
