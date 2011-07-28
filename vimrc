@@ -407,3 +407,6 @@ nnoremap <F5> :GundoToggle<CR>
 " ------ Ack ------
 let g:ackprg="ack -H --nocolor --nogroup --column"
 set t_RV=
+
+" ------ BufExplorer ------
+nnoremap <F3> :BufExplorerVerticalSplit <CR>
