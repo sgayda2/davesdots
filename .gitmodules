@@ -16,3 +16,6 @@
 [submodule "vim/bundle/bufexplorer"]
 	path = vim/bundle/bufexplorer
 	url = https://github.com/vim-scripts/bufexplorer.zip
+[submodule "vim/bundle/NERDcommenter"]
+	path = vim/bundle/NERDcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
