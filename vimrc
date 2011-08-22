@@ -151,7 +151,7 @@ if has('eval')
    if has("gui_running")
       call LoadColorScheme("wombat:twilight256:desert")
    elseif &t_Co == 256
-      call LoadColorScheme("wombat:twilight256:inkpot")
+      call LoadColorScheme("wombat256mod:wombat:twilight256:inkpot")
    elseif &t_Co == 88
       call LoadColorScheme("wombat:zellner")
    else
