@@ -39,5 +39,10 @@
 	pager =
 	excludesfile = ~/.gitignore
 	safecrlf = true
+	pager = =
+	autocrlf = input
 [push]
 	default = matching
+[user]
+	name = Dylan Nugent
+	email = dylnuge@gmail.com

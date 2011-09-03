@@ -23,7 +23,8 @@ import System.IO(hPutStrLn)
 
 -- Things that should always float
 myFloatHook = composeAll [
-	className =? "qemu" --> doFloat
+	className =? "qemu" --> doFloat,
+	className =? "Gimp" --> doFloat
 	]
 
 myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed
