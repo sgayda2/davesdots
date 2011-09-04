@@ -106,7 +106,7 @@ set pager_stop
 set encode_from=yes
 
 # Debian's mutt will let me set titlebars.
-set xterm_set_titles=yes
+#set xterm_set_titles=yes
 
 #aliases
 alias admin         admin@acm.uiuc.edu

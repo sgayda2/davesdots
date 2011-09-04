@@ -10,4 +10,6 @@ command -v mp3fs >/dev/null 2>&1 && alias mountmp3='sudo mp3fs ~/Music,320 /mnt/
 
 command -v pagsh.openafs >/dev/null 2>&1 && alias adminhat="pagsh.openafs -c 'export KRB5CCNAME=${KRB5CCNAME}_$$; kinit $USER/admin; klist -s && aklog && $SHELL; kdestroy; unlog'"
 
+command -v packer >/dev/null 2>&1 && alias packer='packer --auronly'
+
 # vim: set ft=sh ts=3 sw=3 et:
