@@ -1,8 +1,8 @@
 # work with gmail (where i have everything bounce)
 set imap_user = 'dfreedm2'
-set spoolfile = imaps://imap.gmail.com:993/INBOX
 set folder = imaps://imap.gmail.com:993
-set postponed = "imaps://imap.gmail.com:993/Drafts"
+set spoolfile = +INBOX
+set postponed = +[Gmail]/Drafts
 set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 set certificate_file = "~/.mutt/certificates"
@@ -11,7 +11,6 @@ set mail_check = 30
 set net_inc = 5
 set sort = threads
 set sort_aux = last-mailbox-order
-set query_command = 'goobook query %s'
 set use_envelope_from
 
 # Use these folders
@@ -19,19 +18,9 @@ mailboxes ! =INBOX \
             =[Gmail]/Spam \
             =[Gmail]/"Sent Mail" \
             =Admin \
-            =Exec \
-            =Conference \
-            =SigMil \
-            =LUG \
             =Membership \
             =Save \
-            =OpenAFS \
-            =MechMania \
-            =sls-l \
-            =AMP \
-            =410 \
-            =PPL \
-            =429
+            =AMP
 
 # Set up my sig
 set from = 'Daniel Freedman <dfreedm2@gmail.com>'
@@ -61,16 +50,10 @@ save-hook '~h admin@acm\.uiuc\.edu'             =Admin
 save-hook '~h webmaster@acm\.uiuc\.edu'         =Admin
 save-hook '~h mailmain@acm\.uiuc\.edu'          =Admin
 save-hook '~h news@(news)*\.acm\.uiuc\.edu'     =Admin
-save-hook '~h exec@acm\.uiuc\.edu'              =Exec
-save-hook '~h conference@acm\.uiuc\.edu'        =Conference
-save-hook '~h lug-l@acm\.uiuc\.edu'             =LUG
 save-hook '~t membership-l@acm\.uiuc\.edu'      =Membership
 save-hook '~t cluster-l@acm\.uiuc\.edu'         =Membership
 save-hook '~t jobs-l@acm\.uiuc\.edu'            =Membership
-save-hook '~h openafs-announce.*@openafs\.org'  =OpenAFS
-save-hook '~h mm-.*@acm\.uiuc\.edu'             =MechMania
 save-hook '~h amp-l@acm\.uiuc\.edu'             =AMP
-save-hook '~h sysadmin-ppl@cs\.uiuc\.edu'       =PPL
 
 #last one, catchall
 save-hook '~f .*'                               =Save
@@ -122,3 +105,12 @@ alternative_order text/enriched text/plain text/html
 
 # display w3m-rendered HTML inline
 auto_view text/html
+
+# allow mutt to open new imap connection automatically
+unset imap_passive
+
+# keep imap connection alive by polling intermittently (time in seconds)
+set imap_keepalive = 300
+
+# how often to check for new mail (time in seconds)
+set mail_check = 120
