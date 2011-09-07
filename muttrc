@@ -7,7 +7,7 @@ set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 set certificate_file = "~/.mutt/certificates"
 set timeout = 60
-set mail_check = 30
+set mail_check = 120
 set net_inc = 5
 set sort = threads
 set sort_aux = last-mailbox-order
@@ -112,5 +112,6 @@ unset imap_passive
 # keep imap connection alive by polling intermittently (time in seconds)
 set imap_keepalive = 300
 
-# how often to check for new mail (time in seconds)
-set mail_check = 120
+# Native smtp
+set smtp_url = smtps://$imap_user@smtp.gmail.com:465
+set ssl_force_tls = yes
