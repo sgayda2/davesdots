@@ -1,3 +1,6 @@
+#!/bin/sh
+
+# Aliases
 command -v dcraw >/dev/null 2>&1 && alias dcraw='dcraw -H 2 -q 3 -o 0'
 
 command -v xrandr >/dev/null 2>&1 && alias vgaon='xrandr --output VGA1 --mode 1024x768 --right-of LVDS1' && alias vgaoff='xrandr --output VGA1 --off'
@@ -11,5 +14,12 @@ command -v mp3fs >/dev/null 2>&1 && alias mountmp3='sudo mp3fs ~/Music,320 /mnt/
 command -v pagsh.openafs >/dev/null 2>&1 && alias adminhat="pagsh.openafs -c 'export KRB5CCNAME=${KRB5CCNAME}_$$; kinit $USER/admin; klist -s && aklog && $SHELL; kdestroy; unlog'"
 
 command -v packer >/dev/null 2>&1 && alias packer='packer --auronly'
+
+# Perl local::lib
+export PERL_LOCAL_LIB_ROOT="${HOME}/perl5";
+export PERL_MB_OPT="--install_base ${HOME}/perl5";
+export PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5";
+export PERL5LIB="${HOME}/perl5/lib/perl5/x86_64-linux-thread-multi:${HOME}/perl5/lib/perl5";
+concat_path "${HOME}/perl5/bin"
 
 # vim: set ft=sh ts=3 sw=3 et:
