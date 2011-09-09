@@ -12,6 +12,7 @@ set net_inc = 5
 set sort = threads
 set sort_aux = last-mailbox-order
 set use_envelope_from
+set mailcap_path = "~/.mutt/mailcap"
 
 # Use these folders
 mailboxes ! =INBOX \
