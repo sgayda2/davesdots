@@ -15,6 +15,18 @@ command -v pagsh.openafs >/dev/null 2>&1 && alias adminhat="pagsh.openafs -c 'ex
 
 command -v packer >/dev/null 2>&1 && alias packer='packer --auronly'
 
+systemupdate(){
+   if command -v aptitude; then
+      sudo sh -c 'aptitude update; aptitude safe-upgrade'
+   elif command -v apt-get; then
+      sudo sh -c 'apt-get update; apt-get upgrade'
+   elif command -v pacman; then
+      sudo pacman -Syu
+   else
+      echo "Unsupported system"
+   fi
+}
+
 # Perl local::lib
 export PERL_LOCAL_LIB_ROOT="${HOME}/perl5";
 export PERL_MB_OPT="--install_base ${HOME}/perl5";
