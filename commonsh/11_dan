@@ -18,11 +18,18 @@ command -v packer >/dev/null 2>&1 && alias packer='packer --auronly'
 systemupdate(){
    DEB="aptitude update || apt-get update; aptitude safe-upgrade || apt-get upgrade;"
    ARCH="pacman -Syu"
-   ID=`lsb_release -is`
+   MAC="softwareupdate -ia"
+   if [ `uname` = "Linux" ]; then
+      ID=`lsb_release -is`
+   elif [ `uname` = "Darwin" ]; then
+      ID="Mac"
+   fi
    if [ ${ID} = "Arch" ]; then
       sudo sh -c "${ARCH}"
-   elif [ ${ID} = "Debian" ]; then
+   elif [ ${ID} = "Debian" -o ${ID} = "Ubuntu" ]; then
       sudo sh -c "${DEB}"
+   elif [ ${ID} = "Mac" ]; then
+      sudo sh -c "${MAC}"
    else
       echo "Unsupported system"
    fi
