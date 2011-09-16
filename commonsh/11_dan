@@ -19,17 +19,19 @@ systemupdate(){
    DEB="aptitude update || apt-get update; aptitude safe-upgrade || apt-get upgrade;"
    ARCH="pacman -Syu"
    MAC="softwareupdate -ia"
+   UPDATE=""
    if [ `uname` = "Linux" ]; then
       ID=`lsb_release -is`
    elif [ `uname` = "Darwin" ]; then
-      ID="Mac"
+      UPDATE="${MAC}"
    fi
    if [ ${ID} = "Arch" ]; then
-      sudo sh -c "${ARCH}"
+      UPDATE="${ARCH}"
    elif [ ${ID} = "Debian" -o ${ID} = "Ubuntu" ]; then
-      sudo sh -c "${DEB}"
-   elif [ ${ID} = "Mac" ]; then
-      sudo sh -c "${MAC}"
+      UPDATE="${DEB}"
+   fi
+   if [ -n "${UPDATE}" ]; then
+      sudo sh -c "${UPDATE}"
    else
       echo "Unsupported system"
    fi
