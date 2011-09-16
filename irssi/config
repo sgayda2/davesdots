@@ -24,12 +24,7 @@ channels = (
   { name = "#cs"; chatnet = "NullIRC"; autojoin = "Yes"; },
   { name = "#usenet"; chatnet = "NullIRC"; autojoin = "Yes"; },
   { name = "#acm"; chatnet = "drwilco"; autojoin = "Yes"; },
-  { 
-    name = "#webos-internals";
-    chatnet = "FreeNode";
-    autojoin = "Yes";
-  },
-  { name = "#webos"; chatnet = "FreeNode"; autojoin = "Yes"; }
+  { name = "#webos"; chatnet = "FreeNode"; autojoin = "No"; }
 );
 
 aliases = {
