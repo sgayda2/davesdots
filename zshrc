@@ -3,7 +3,6 @@
 # Original author: Saleem Abdulrasool <compnerd@compnerd.org>
 # vim:set nowrap:
 
-LANG=en_US.UTF8
 case `uname -s` in
 	Darwin)
 		export LHOSTNAME=`scutil --get LocalHostName`
