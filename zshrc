@@ -3,6 +3,7 @@
 # Original author: Saleem Abdulrasool <compnerd@compnerd.org>
 # vim:set nowrap:
 
+LANG=en_US.UTF8
 case `uname -s` in
 	Darwin)
 		export LHOSTNAME=`scutil --get LocalHostName`
@@ -55,4 +56,8 @@ if [ -d "${HOME}/.zsh" ] ; then
 	for file in "${HOME}"/.zsh/*(N.x:t) ; do
 		. "${HOME}/.zsh/${file}"
 	done
+fi
+
+if [ -e "${HOME}/.nvm" ] ; then
+	. "${HOME}/.nvm/nvm.sh"
 fi
