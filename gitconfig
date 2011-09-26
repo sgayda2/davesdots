@@ -41,3 +41,6 @@
 	safecrlf = true
 [push]
 	default = matching
+[user]
+	name = Drew Cross
+	email = mstngdrew212@gmail.com
