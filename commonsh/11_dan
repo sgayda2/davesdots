@@ -15,25 +15,28 @@ command -v pagsh.openafs >/dev/null 2>&1 && alias adminhat="pagsh.openafs -c 'ex
 
 command -v packer >/dev/null 2>&1 && alias packer='packer --auronly'
 
-systemupdate(){
+sysupdate(){
    DEB="aptitude update || apt-get update; aptitude safe-upgrade || apt-get upgrade;"
-   ARCH="pacman -Syu"
-   MAC="softwareupdate -ia"
+   ARCH="pacman -Syu; packer -Syu"
+   MAC="softwareupdate -ia; brew update; brew upgrade"
+   UNAME=`uname`
    UPDATE=""
-   if [ `uname` = "Linux" ]; then
+   if [ ${UNAME} = "Linux" ]; then
       ID=`lsb_release -is`
-   elif [ `uname` = "Darwin" ]; then
+      if [ ${ID} = "Arch" ]; then
+         UPDATE="${ARCH}"
+      elif [ ${ID} = "Debian" -o ${ID} = "Ubuntu" ]; then
+         UPDATE="${DEB}"
+      fi
+   elif [ ${UNAME} = "Darwin" ]; then
       UPDATE="${MAC}"
-   fi
-   if [ ${ID} = "Arch" ]; then
-      UPDATE="${ARCH}"
-   elif [ ${ID} = "Debian" -o ${ID} = "Ubuntu" ]; then
-      UPDATE="${DEB}"
    fi
    if [ -n "${UPDATE}" ]; then
       sudo sh -c "${UPDATE}"
    else
       echo "Unsupported system"
+      echo "Uname: ${UNAME}"
+      echo "ID: ${ID}"
    fi
 }
 
