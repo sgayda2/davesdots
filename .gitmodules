@@ -19,6 +19,6 @@
 [submodule "vim/bundle/NERDcommenter"]
 	path = vim/bundle/NERDcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule "vim/bundle/better-css-syntax"]
-	path = vim/bundle/better-css-syntax
-	url = git://github.com/vim-scripts/Better-CSS-Syntax-for-Vim.git
+[submodule "vim/bundle/tabular"]
+	path = vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
