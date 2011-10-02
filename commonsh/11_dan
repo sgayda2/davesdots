@@ -15,31 +15,6 @@ command -v pagsh.openafs >/dev/null 2>&1 && alias adminhat="pagsh.openafs -c 'ex
 
 command -v packer >/dev/null 2>&1 && alias packer='packer --auronly'
 
-sysupdate(){
-   DEB="aptitude update || apt-get update; aptitude safe-upgrade || apt-get upgrade;"
-   ARCH="pacman -Syu; packer -Syu"
-   MAC="softwareupdate -ia; brew update; brew upgrade"
-   UNAME=`uname`
-   UPDATE=""
-   if [ ${UNAME} = "Linux" ]; then
-      ID=`lsb_release -is`
-      if [ ${ID} = "Arch" ]; then
-         UPDATE="${ARCH}"
-      elif [ ${ID} = "Debian" -o ${ID} = "Ubuntu" ]; then
-         UPDATE="${DEB}"
-      fi
-   elif [ ${UNAME} = "Darwin" ]; then
-      UPDATE="${MAC}"
-   fi
-   if [ -n "${UPDATE}" ]; then
-      sudo sh -c "${UPDATE}"
-   else
-      echo "Unsupported system"
-      echo "Uname: ${UNAME}"
-      echo "ID: ${ID}"
-   fi
-}
-
 # Perl local::lib
 export PERL_LOCAL_LIB_ROOT="${HOME}/.perl5";
 export PERL_MB_OPT="--install_base ${HOME}/.perl5";
