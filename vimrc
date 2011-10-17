@@ -193,6 +193,9 @@ if has('autocmd')
 
    " fix up procmail rule detection
    autocmd BufRead procmailrc :setfiletype procmail
+
+   " fix up JSON rule detection
+   autocmd BufRead,BufNewFile *.json :setfiletype javascript
 endif
 
 " ---- cscope/ctags setup ----
