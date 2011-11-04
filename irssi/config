@@ -11,6 +11,13 @@ servers = (
     chatnet = "FreeNode";
     port = "7000";
     use_ssl = "yes";
+  },
+  {
+    address = "irc.esper.net";
+    chatnet = "esper";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "no";
   }
 );
 
@@ -18,13 +25,15 @@ chatnets = {
   NullIRC = { type = "IRC"; };
   drwilco = { type = "IRC"; };
   FreeNode = { type = "IRC"; };
+  esper = { type = "IRC"; };
 };
 
 channels = (
   { name = "#cs"; chatnet = "NullIRC"; autojoin = "Yes"; },
   { name = "#usenet"; chatnet = "NullIRC"; autojoin = "Yes"; },
   { name = "#acm"; chatnet = "drwilco"; autojoin = "Yes"; },
-  { name = "#webos"; chatnet = "FreeNode"; autojoin = "No"; }
+  { name = "#darksouls"; chatnet = "esper"; autojoin = "yes"; },
+  { name = "#archlinux"; chatnet = "FreeNode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -211,19 +220,5 @@ hilights = (
   { text = "azakus "; nick = "yes"; word = "yes"; },
   { text = "jstop"; nick = "yes"; word = "yes"; }
 );
-ignores = (
-  {
-    level = "JOINS PARTS QUITS MODES NICKS";
-    channels = ( "#webos-internals" );
-  },
-  { 
-    level = "JOINS PARTS QUITS MODES NICKS";
-    channels = ( "#webos" );
-  },
-  {
-    level = "CTCPS JOINS PARTS QUITS MODES NICKS";
-    channels = ( "#usenet" );
-  },
-  { level = "JOINS PARTS QUITS MODES NICKS"; channels = ( "#cs" ); }
-);
+ignores = ( { level = "CTCPS JOINS PARTS QUITS MODES NICKS"; } );
 logs = { };
