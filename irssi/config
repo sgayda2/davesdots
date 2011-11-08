@@ -4,8 +4,17 @@ servers = (
     chatnet = "NullIRC";
     port = "6697";
     use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "yes";
   },
-  { address = "irc.drwilco.net"; chatnet = "drwilco"; port = "6667"; },
+  {
+    address = "irc.drwilco.net";
+    chatnet = "drwilco";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
   {
     address = "chat.freenode.net";
     chatnet = "FreeNode";
@@ -18,6 +27,7 @@ servers = (
     port = "6697";
     use_ssl = "yes";
     ssl_verify = "no";
+    autoconnect = "yes";
   }
 );
 
