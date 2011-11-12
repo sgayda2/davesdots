@@ -22,4 +22,8 @@ export PERL_MM_OPT="INSTALL_BASE=${HOME}/.perl5";
 export PERL5LIB=`perl -MConfig -e 'print "$ENV{HOME}/.perl5/lib/perl5/$Config{archname}:$ENV{HOME}/.perl5/lib/perl5"'`;
 concat_path "${HOME}/.perl5/bin"
 
+# disable flow control
+
+stty -ixon -ixoff 2>/dev/null
+
 # vim: set ft=sh ts=3 sw=3 et:
