@@ -48,14 +48,7 @@ bind index ,        tag-prefix
 bind index i        display-message
 
 # Folders
-mailboxes ! =INBOX \
-            =[Gmail]/Spam \
-            =[Gmail]/"Sent Mail" \
-            =Admin \
-            =Arch \
-            =Membership \
-            =Save \
-            =AMP
+set imap_check_subscribed
 
 # Folder Hooks
 folder-hook '.'     'set read_inc=1000' # cached, show less progress updates
@@ -92,6 +85,8 @@ set print_command="a2ps -1 --borders=no -g -Email" # pretty print
 set confirmappend=no # Don't ask before appending emails to an existing mailbox
 set pager_stop # stop at end of a message
 set encode_from=yes # avoid ">From" munging charsets
+unset markers # dont add + signs if message wraps
+set include=yes # auto include message in reply
 
 ignore * # ignore all headers by default
 unignore from date subject to cc reply-to # keep only useful headers
