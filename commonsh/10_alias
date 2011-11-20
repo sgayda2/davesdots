@@ -96,6 +96,12 @@ alias rm='rm -ir'
 alias df='df -h'
 alias du='du -h'
 
+alias svnlog="svn log --limit"
+alias svndiff="svn diff --diff-cmd colordiff"
+alias gdiff='git fetch && git log -p --reverse HEAD...origin/master'
+alias xoom='sudo mtpfs -o allow_other /media/xoom'
+alias uxoom='sudo umount /media/xoom'
+
 alias ping='ping -c4'
 
 command -v time >/dev/null 2>&1 && alias time='command time'

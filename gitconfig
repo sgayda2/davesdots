@@ -23,6 +23,7 @@
 	ls   = show
 	type = cat-file -t
 	dump = cat-file -p
+	lg   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
 	untrack-ignored = !git-untracked-ignored
 	info = !git-info
@@ -31,13 +32,19 @@
 	hist = log --graph --pretty=format:'%C(cyan)%h%Creset -%C(yellow)%d%Creset %s %C(magenta)[%an]%Creset %Cgreen(%ad)%Creset' --date=relative
 
 	vimdiff = difftool -y -t vimdiff
+
 [color]
 	diff = auto
 	status = auto
 	branch = auto
 [core]
-	pager =
+	pager = less -FRSX
 	excludesfile = ~/.gitignore
 	safecrlf = true
 [push]
 	default = matching
+[merge]
+	tool = vimdiff
+[user]
+	name = Stoyan Gaydarov
+	email = sgayda2@gmail.com
