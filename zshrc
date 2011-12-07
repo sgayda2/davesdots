@@ -56,7 +56,3 @@ if [ -d "${HOME}/.zsh" ] ; then
 		. "${HOME}/.zsh/${file}"
 	done
 fi
-
-if [ -e "${HOME}/.nvm" ] ; then
-	. "${HOME}/.nvm/nvm.sh"
-fi

@@ -9,7 +9,7 @@ command -v xclip >/dev/null 2>&1 && alias xpaste='xclip -o | xclip -selection c'
 
 command -v rubber >/dev/null 2>&1 && alias rubber='rubber --pdf'
 
-command -v mp3fs >/dev/null 2>&1 && alias mountmp3='sudo mp3fs ~/Music,320 /mnt/mp3 -o allow_other,ro'
+command -v mp3fs >/dev/null 2>&1 && alias mountmp3='sudo mp3fs -b 320 ~/Music /mnt/mp3 -o allow_other,ro'
 
 command -v pagsh.openafs >/dev/null 2>&1 && alias adminhat="pagsh.openafs -c 'export KRB5CCNAME=${KRB5CCNAME}_$$; kinit $USER/admin; klist -s && aklog && $SHELL; kdestroy; unlog'"
 
@@ -25,5 +25,11 @@ concat_path "${HOME}/.perl5/bin"
 # disable flow control
 
 stty -ixon -ixoff 2>/dev/null
+
+# enable node version manager
+
+if [ -d ${HOME}/.nvm ]; then
+   . ${HOME}/.nvm/nvm.sh
+fi
 
 # vim: set ft=sh ts=3 sw=3 et:
