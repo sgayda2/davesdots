@@ -20,6 +20,8 @@ servers = (
     chatnet = "FreeNode";
     port = "7000";
     use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "yes";
   },
   {
     address = "irc.esper.net";
@@ -43,7 +45,9 @@ channels = (
   { name = "#usenet"; chatnet = "NullIRC"; autojoin = "Yes"; },
   { name = "#acm"; chatnet = "drwilco"; autojoin = "Yes"; },
   { name = "#darksouls"; chatnet = "esper"; autojoin = "yes"; },
-  { name = "#archlinux"; chatnet = "FreeNode"; autojoin = "yes"; }
+  { name = "#archlinux"; chatnet = "FreeNode"; autojoin = "yes"; },
+  { name = "#webos"; chatnet = "FreeNode"; },
+  { name = "#webos-internals"; chatnet = "FreeNode"; }
 );
 
 aliases = {
@@ -62,7 +66,7 @@ aliases = {
   WI = "whois";
   WII = "whois $0 $0";
   WW = "whowas";
-  W = "who";
+  W = "window";
   N = "names";
   M = "msg";
   T = "topic";
@@ -232,3 +236,77 @@ hilights = (
 );
 ignores = ( { level = "CTCPS JOINS PARTS QUITS MODES NICKS"; } );
 logs = { };
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#cs";
+        tag = "NullIRC";
+      }
+    );
+  };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#usenet";
+        tag = "NullIRC";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#acm";
+        tag = "drwilco";
+      }
+    );
+  };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#darksouls";
+        tag = "esper";
+      }
+    );
+  };
+  6 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#webos-internals";
+        tag = "FreeNode";
+      }
+    );
+  };
+  7 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#webos";
+        tag = "FreeNode";
+      }
+    );
+  };
+  8 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#archlinux";
+        tag = "FreeNode";
+      }
+    );
+  };
+};
+mainwindows = { 1 = { first_line = "1"; lines = "57"; }; };
