@@ -85,15 +85,16 @@ my %links = (
 	lock       => 'bin/lock',
 
 	'git-info'            => 'bin/git-info',
+	'git-sparse'          => 'bin/git-sparse',
 	'git-untrack-ignored' => 'bin/git-untracked-ignored',
 
-	gdbinit => '.gdbinit',
-	mutt => '.mutt',
-	muttrc => '.muttrc',
+	gdbinit     => '.gdbinit',
+	mutt        => '.mutt',
+	muttrc      => '.muttrc',
 	'tmux.conf' => '.tmux.conf',
-	Xmodmap => '.Xmodmap',
-	irssi => '.irssi',
-	aptitude => '.aptitude'
+	Xmodmap     => '.Xmodmap',
+	irssi       => '.irssi',
+	aptitude    => '.aptitude'
 );
 
 my $contained = (substr $scriptdir, 0, length($home)) eq $home;
