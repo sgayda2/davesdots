@@ -1,9 +1,0 @@
-Aptitude "";
-Aptitude::CmdLine "";
-Aptitude::CmdLine::Show-Deps "true";
-Aptitude::CmdLine::Show-Why "true";
-Aptitude::CmdLine::Show-Size-Changes "true";
-Aptitude::CmdLine::Show-Summary "first-package-and-type";
-Aptitude::CmdLine::Always-Prompt "true";
-Apt "";
-Apt::Install-Recommends "false";
