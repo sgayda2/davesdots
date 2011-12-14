@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ ! -d .git/info ]; then
-    echo "Not a git repository!"
+    echo "Run at the top of a git repository"
     exit 1
 fi
 git config core.sparsecheckout true
