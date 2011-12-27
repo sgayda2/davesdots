@@ -47,6 +47,7 @@ set visualbell             " Turn visual bell on
 set t_vb=                  " Make the visual bell emit nothing
 set showcmd                " Show the current command
 set number                 " Show line numbers
+set colorcolumn=100        " Shows a red line at the 100th column
 
 set diffopt+=iwhite
 
