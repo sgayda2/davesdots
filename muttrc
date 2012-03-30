@@ -94,4 +94,4 @@ alternative_order text/enriched text/plain text/html # prefer anything but HTML
 auto_view text/html # display HTML inline
 
 # Theme
-source ~/.mutt/ivy_league.theme
+source ~/.mutt/mutt-solarized/mutt-colors-solarized-dark-256.muttrc
