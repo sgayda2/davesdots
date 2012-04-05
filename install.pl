@@ -48,7 +48,7 @@ my %links = (
 	_vimrc   => '_vimrc',
 	gvimrc   => '.gvimrc',
 
-	emacs    => '.emacs',
+	emacsrc    => '.emacs',
 
 	commonsh => '.commonsh',
 
