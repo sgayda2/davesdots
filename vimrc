@@ -196,6 +196,9 @@ if has('autocmd')
 
    " fix up JSON rule detection
    autocmd BufRead,BufNewFile *.json :setfiletype javascript
+
+   autocmd BufRead,BufNewFile *
+      \ if &ft == 'javascript' | set ts=4 sw=4 noet | endif
 endif
 
 " ---- cscope/ctags setup ----
