@@ -12,18 +12,6 @@ case `uname -s` in
 	;;
 esac
 
-# Hack for fixing broken zsh on UIUC's linux machines
-case `echo $LHOSTNAME | cut -d. -f2-` in
-	ews.illinois.edu)
-#		if [ -z $(FPATH) ] ; then
-#			FPATH="/usr/share/zsh/4.3.10/functions"
-#		else
-		FPATH="/usr/share/zsh/4.3.10/functions"
-#		fi
-		export FPATH
-	;;
-esac
-
 autoload compinit; compinit -d "${HOME}/.zsh/.zcompdump-${LHOSTNAME}"
 
 autoload age

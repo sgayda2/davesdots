@@ -37,12 +37,7 @@
 	branch = auto
 [core]
 	pager =
-	editor = "emacs"
 	excludesfile = ~/.gitignore
 	safecrlf = true
 [push]
 	default = matching
-
-[user]
-	name = Charles Tucker
-	email = ctucker2@uiuc.edu
