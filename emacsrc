@@ -65,7 +65,7 @@
 (desire 'linum "linum.el" '(global-linum-mode 1))
 
 ;; Set up the color theme
-(if (fboundp 'load-theme)
+(if (and (fboundp 'load-theme) (boundp 'custom-theme-load-path))
 	; We can use emacs24 color themes
 	(progn
 	  (push "~/.emacsdir/themes/" custom-theme-load-path)
