@@ -11,6 +11,9 @@
 	   (eval ,success)
 	 (progn (message (format "Failed to load %s" ,filename)) (eval ,failure))))
 
+;; Standard load location.
+(add-to-list 'load-path "~/elisp/")
+
 ;; Disable toolbars/menus/etc
 (menu-bar-mode -1)
 ;; tool-bar-mode and scroll-bar-mode are only available for gui emacs
@@ -82,8 +85,15 @@
 				(setq slime-lisp-implementations '((sbcl ("sbcl" "--eval" "(sb-unix::ignore-interrupt sb-unix::sighup)"))))))
 
 ;; Load mic-paren, an advanced paren-matching mode.
+;; Otherwise, try and load show-paren-mode.
 (desire 'mic-paren "mic-paren"
-		'(progn (paren-activate) (setf paren-priority 'both)))
+		'(progn (paren-activate) (setf paren-priority 'both))
+		'(progn (desire 'paren "paren.el"
+				'(progn
+	   			(set-face-background 'show-paren-match-face (face-background 'region))
+	   			(show-paren-mode 1)
+	   			(setq show-paren-delay 0)
+	   			(setq show-paren-style "mixed")))))
 
 ;; Load Par Edit, a minor mode for structured editing of sexps.
 (desire 'paredit "paredit"
@@ -94,16 +104,15 @@
 (desire 'tramp "tramp"
 		(setq tramp-default-method "ssh"))
 
-;; Load AUCTeX, for LaTeX editing.
-(desire 'auctex "auctex.el"
-		'(progn (desire 'preview-latex "preview-latex.el")
-				(setq TeX-auto-save t)
-				(setq TeX-parse-self t)
-				(setq TeX-PDF-mode t)
-				;; If on OS X, use `open' as the default is nonsense.
-				(if (string= (getenv "TERM_PROGRAM") "Apple_Terminal")
-					(progn (setq TeX-view-program-list '(("Preview" "open %o")))
-						   (setq TeX-view-program-selection '((output-pdf "Preview")))))))
+;; Load AUCTeX, for LaTeX editing. (I believe it needs to be loaded like this.)
+(if (and (load "auctex.el" nil t t) (load "preview-latex.el" nil t t))
+	(progn (setq TeX-auto-save t)
+		   (setq TeX-parse-self t)
+		   (setq TeX-PDF-mode t)
+		   ;; If on OS X, use `open' as the default is nonsense.
+		   (if (string= (getenv "TERM_PROGRAM") "Apple_Terminal")
+			   (progn (setq TeX-view-program-list '(("Preview" "open %o")))
+					  (setq TeX-view-program-selection '((output-pdf "Preview")))))))
 
 ;; Set up the color theme
 (if (and (fboundp 'load-theme) (boundp 'custom-theme-load-path))
@@ -129,14 +138,6 @@
 		   (setq whitespace-style '(face trailing empty space-before-tab))
 		   (global-whitespace-mode)
 		   (global-set-key "\C-cw" 'whitespace-cleanup)))
-
-;; Parentheses matching
-(desire 'paren "paren.el"
-	'(progn
-	   (set-face-background 'show-paren-match-face (face-background 'region))
-	   (show-paren-mode 1)
-	   (setq show-paren-delay 0)
-	   (setq show-paren-style "mixed")))
 
 ;; Tabs for indentation with spaces for alignment
 (desire 'smarttabs "smarttabs.el"
