@@ -20,7 +20,7 @@
 	  (scroll-bar-mode -1)))
 
 ;; Start the emacs-server for quick startup when using emacsclient
-(server-start)
+;(server-start)
 
 ;; Some sane defaults for tabs and column width
 (setq-default tab-width 4)
@@ -63,6 +63,47 @@
 
 ;; Turn on line numbering (hopefully with linum-mode)
 (desire 'linum "linum.el" '(global-linum-mode 1))
+
+;; Load slime (the Superior Lisp Interaction Mode for Emacs).
+;; It's typically in its own directory if it's not in the system site lisp.
+;; This uses SBCL as the inferior lisp.
+(add-to-list 'load-path "~/slime/")
+(setq inferior-lisp-program "sbcl"
+	  lisp-indent-function 'common-lisp-indent-function
+	  slime-complete-symbol-function 'sime-fuzzy-complete-symbol
+	  slime-log-events t
+	  slime-use-autodoc-mode t
+	  slime-autodoc-use-multiline-p t
+	  slime-highlight-compiler-notes t)
+;; The --eval fixes a problem on OS X where sbcl gets killed by the OS sometimes.
+(desire 'slime-autoloads "slime-autoloads")
+(desire 'slime "slime"
+		'(progn (slime-setup '(slime-fancy))
+				(setq slime-lisp-implementations '((sbcl ("sbcl" "--eval" "(sb-unix::ignore-interrupt sb-unix::sighup)"))))))
+
+;; Load mic-paren, an advanced paren-matching mode.
+(desire 'mic-paren "mic-paren"
+		'(progn (paren-activate) (setf paren-priority 'both)))
+
+;; Load Par Edit, a minor mode for structured editing of sexps.
+(desire 'paredit "paredit"
+		'(autoload 'enable-paredit-mode "paredit"
+				   "Turn on pseduo-structural editing of Lisp code."))
+
+;; Load tramp.
+(desire 'tramp "tramp"
+		(setq tramp-default-method "ssh"))
+
+;; Load AUCTeX, for LaTeX editing.
+(desire 'auctex "auctex.el"
+		'(progn (desire 'preview-latex "preview-latex.el")
+				(setq TeX-auto-save t)
+				(setq TeX-parse-self t)
+				(setq TeX-PDF-mode t)
+				;; If on OS X, use `open' as the default is nonsense.
+				(if (string= (getenv "TERM_PROGRAM") "Apple_Terminal")
+					(progn (setq TeX-view-program-list '(("Preview" "open %o")))
+						   (setq TeX-view-program-selection '((output-pdf "Preview")))))))
 
 ;; Set up the color theme
 (if (and (fboundp 'load-theme) (boundp 'custom-theme-load-path))
@@ -176,3 +217,15 @@
 (autoload 'processing-mode "processing-mode" "Processing mode" t)
 (add-to-list 'auto-mode-alist '("\\.pde$" . processing-mode))
 (setq processing-location "/Applications/Processing.app/Contents/MacOS/JavaApplicationStub")
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
