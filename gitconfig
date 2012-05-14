@@ -39,5 +39,9 @@
 	pager =
 	excludesfile = ~/.gitignore
 	safecrlf = true
+	editor = "emacs"
 [push]
 	default = matching
+[user]
+	name = Nikoli Dryden
+	email = ndryden@xenosgame.com
