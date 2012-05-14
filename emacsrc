@@ -82,7 +82,7 @@
 (desire 'slime-autoloads "slime-autoloads")
 (desire 'slime "slime"
 		'(progn (slime-setup '(slime-fancy))
-				(setq slime-lisp-implementations '((sbcl ("sbcl" "--eval" "(sb-unix::ignore-interrupt sb-unix::sighup)"))))))
+				(setq slime-lisp-implementations '((sbcl ("sbcl" "--core" "/home/ndryden/slime/sbcl.core-for-slime" "--eval" "(sb-unix::ignore-interrupt sb-unix::sighup)"))))))
 
 ;; Load mic-paren, an advanced paren-matching mode.
 ;; Otherwise, try and load show-paren-mode.
@@ -99,6 +99,24 @@
 (desire 'paredit "paredit"
 		'(autoload 'enable-paredit-mode "paredit"
 				   "Turn on pseduo-structural editing of Lisp code."))
+
+;; Useful keybindings and swaps for Lisp. Requires slime and paredit.
+;; Swaps [ with (, and ] with ), among other things.
+(if (and (featurep 'slime) (featurep 'paredit))
+	(progn
+		(define-key slime-mode-map (kbd "[") 'paredit-open-round)
+		(define-key slime-mode-map (kbd "]") 'paredit-close-round)
+		(define-key slime-mode-map (kbd "M-[") 'paredit-wrap-round)
+		(define-key slime-mode-map (kbd "(") 'paredit-open-square)
+		(define-key slime-mode-map (kbd ")") 'paredit-close-square)
+		(define-key slime-mode-map (kbd "RET") 'paredit-newline)
+		(define-key slime-mode-map (kbd "<return>") 'paredit-newline)
+		(define-key slime-mode-map (kbd "C-t") 'transpose-sexps)
+		(define-key slime-mode-map (kbd "C-M-t") 'transpose-chars)
+		(define-key slime-mode-map (kbd "C-b") 'backward-sexp)
+		(define-key slime-mode-map (kbd "C-M-b") 'backward-char)
+		(define-key slime-mode-map (kbd "C-f") 'forward-sexp)
+		(define-key slime-mode-map (kbd "C-M-f") 'forward-char)))
 
 ;; Load tramp.
 (desire 'tramp "tramp"
