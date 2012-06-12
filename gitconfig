@@ -36,7 +36,7 @@
 	status = auto
 	branch = auto
 [core]
-	pager =
+	pager = less -FRSX
 	excludesfile = ~/.gitignore
 	safecrlf = true
 [push]
