@@ -27,7 +27,7 @@ function do_prompt ()
             TITLEBAR=''
         ;;
     esac
-    PS1="${TITLEBAR}\[\033[01;32m\]\u@\h \[\033[01;34m\]\w ${ERROR_PROMPT}${BASE} \[\033[00m\]"
+    PS1="${TITLEBAR}\[\033[1;33m\]\u\[\033[0;39m\]@\[\033[01;32m\]\h \[\033[01;34m\]\w ${ERROR_PROMPT}${BASE} \[\033[00m\]"
     export PS1
 }
 
