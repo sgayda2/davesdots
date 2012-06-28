@@ -31,3 +31,6 @@
 [submodule "mutt/mutt-solarized"]
 	path = mutt/mutt-solarized
 	url = https://github.com/altercation/mutt-colors-solarized
+[submodule "tmux-solarized"]
+	path = tmux-solarized
+	url = https://github.com/seebi/tmux-colors-solarized.git
