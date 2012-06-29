@@ -92,7 +92,7 @@ my %links = (
 	mutt              => '.mutt',
 	muttrc            => '.muttrc',
 	'tmux.conf'       => '.tmux.conf',
-	'tmuxcolors.conf' => '.tmuxcolors.conf'
+	'tmuxcolors.conf' => '.tmuxcolors.conf',
 	Xmodmap           => '.Xmodmap'
 );
 
