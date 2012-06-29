@@ -88,11 +88,12 @@ my %links = (
 	'git-sparse'          => 'bin/git-sparse',
 	'git-untrack-ignored' => 'bin/git-untracked-ignored',
 
-	gdbinit     => '.gdbinit',
-	mutt        => '.mutt',
-	muttrc      => '.muttrc',
-	'tmux.conf' => '.tmux.conf',
-	Xmodmap     => '.Xmodmap'
+	gdbinit           => '.gdbinit',
+	mutt              => '.mutt',
+	muttrc            => '.muttrc',
+	'tmux.conf'       => '.tmux.conf',
+	'tmuxcolors.conf' => '.tmuxcolors.conf'
+	Xmodmap           => '.Xmodmap'
 );
 
 my $contained = (substr $scriptdir, 0, length($home)) eq $home;
