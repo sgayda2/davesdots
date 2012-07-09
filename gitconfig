@@ -36,10 +36,9 @@
 	status = auto
 	branch = auto
 [core]
-	pager =
+	pager = less
 	excludesfile = ~/.gitignore
 	safecrlf = true
-	pager = =
 	autocrlf = input
 [push]
 	default = matching
