@@ -1,19 +1,26 @@
-#!/bin/sh
+# !/bin/sh
 
 # Aliases
-command -v dcraw >/dev/null 2>&1 && alias dcraw='dcraw -H 2 -q 3 -o 0'
+if command -v xrandr >/dev/null 2>&1; then
+   alias vgaon='xrandr --output VGA1 --mode 1024x768 --right-of LVDS1'
+   alias vgaoff='xrandr --output VGA1 --off'
+fi
 
-command -v xrandr >/dev/null 2>&1 && alias vgaon='xrandr --output VGA1 --mode 1024x768 --right-of LVDS1' && alias vgaoff='xrandr --output VGA1 --off'
+if command -v xclip >/dev/null 2>&1; then
+   alias xptoc='xclip -o | xclip -selection c'
+fi
 
-command -v xclip >/dev/null 2>&1 && alias xpaste='xclip -o | xclip -selection c'
+if command -v rubber >/dev/null 2>&1; then
+   alias rubber='rubber --pdf'
+fi
 
-command -v rubber >/dev/null 2>&1 && alias rubber='rubber --pdf'
+if command -v pagsh.openafs >/dev/null 2>&1; then
+   alias adminhat="pagsh.openafs -c 'export KRB5CCNAME=${KRB5CCNAME}_$$; kinit $USER/admin; klist -s && aklog && $SHELL; kdestroy; unlog'"
+fi
 
-command -v mp3fs >/dev/null 2>&1 && alias mountmp3='sudo mp3fs -b 320 ~/Music /mnt/mp3 -o allow_other,ro'
-
-command -v pagsh.openafs >/dev/null 2>&1 && alias adminhat="pagsh.openafs -c 'export KRB5CCNAME=${KRB5CCNAME}_$$; kinit $USER/admin; klist -s && aklog && $SHELL; kdestroy; unlog'"
-
-command -v packer >/dev/null 2>&1 && alias packer='packer --auronly'
+if command -v packer >/dev/null 2>&1; then
+   alias packer='packer --auronly'
+fi
 
 # Perl local::lib
 export PERL_LOCAL_LIB_ROOT="${HOME}/.perl5";
@@ -28,11 +35,9 @@ if [ -d $HOME/homebrew ]; then
 fi
 
 # disable flow control
-
 stty -ixon -ixoff 2>/dev/null
 
 # enable node version manager
-
 if [ -d ${HOME}/.nvm ]; then
    . ${HOME}/.nvm/nvm.sh
 fi
