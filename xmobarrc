@@ -1,17 +1,19 @@
-Config { font = "xft:Incosolata-7"
+Config { font = "xft:Incosolata-8"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 90
        , lowerOnStart = True
-       , commands = [ Run Network "wlan0" ["-L","0","-H","200","--normal","#8AE234","--high","#CC0000"] 10
+       , commands = [Run Wireless "wlan0" ["-t", "wlan0: <essid> <quality>%"] 300
+                    ,Run Network "eth0" ["-L","0","-H","200","--normal","#8AE234","--high","#CC0000"] 10
                     , Run Cpu ["-L","3","-H","50","--normal","#8AE234","--high","#CC0000"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Com "/home/azakus/bin/thinkbat" [] "thinkbat" 200
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run Weather "KSFO" ["-t", "SFO: <skyCondition> <tempF>F"] 3000
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% | %cpu% | %memory% | %wlan0% }{ <fc=#ee9a00>%date%</fc> | %thinkbat%"
+       , template = "%StdinReader% | %cpu% | %memory% | %wlan0wi% | %KSFO% }{ <fc=#ee9a00>%date%</fc> | %thinkbat%"
        }
