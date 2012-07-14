@@ -19,7 +19,7 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell(shellPrompt)
 import XMonad.Prompt.Window
 
-{-import XMonad.Config.Gnome-}
+import XMonad.Hooks.EwmhDesktops
 
 import System.IO(hPutStrLn)
 
@@ -45,10 +45,8 @@ myLayoutHook = tiled ||| Grid ||| simpleTabbed
 
 main = do
 	xmproc <- spawnPipe "xmobar"
-	{-xmonad $ withUrgencyHook NoUrgencyHook gnomeConfig-}
 	xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
 			{ manageHook = manageDocks <+> myFloatHook <+> manageHook defaultConfig <+> scratchpadManageHook (W.RationalRect 0.25 0.25 0.5 0.5)
-			{-, layoutHook = avoidStruts $ smartBorders (layoutHook gnomeConfig)-}
 			, layoutHook = avoidStruts $ smartBorders myLayoutHook
 			, logHook    = dynamicLogWithPP $ xmobarPP
 				{ ppOutput = hPutStrLn xmproc
@@ -57,6 +55,7 @@ main = do
 				}
 			, terminal = "xterm"
 			, modMask = mod4Mask
+			, handleEventHook = fullscreenEventHook
 			}
 			`additionalKeysP`
 			[ ("M-p", shellPrompt defaultXPConfig { position = Top })
