@@ -2,7 +2,7 @@
 
 # Name stuff
 set use_envelope_from
-set from = 'Daniel Freedman <dfreedm2@gmail.com>'
+set from = 'Stoyan Gaydarov <sgayda2@gmail.com>'
 set use_from = yes
 set signature = "~/.mutt/sig"
 
@@ -13,7 +13,7 @@ set certificate_file = "~/.mutt/certificates"
 set mailcap_path = "~/.mutt/mailcap"
 
 # IMAP
-set imap_user = 'dfreedm2'
+set imap_user = 'sgayda2'
 set folder = imaps://imap.gmail.com:993
 set spoolfile = +INBOX
 set postponed = +[Gmail]/Drafts
@@ -55,17 +55,6 @@ folder-hook '.'     'set read_inc=1000' # cached, show less progress updates
 folder-hook '^imap' 'set read_inc=100' # show more on uncached msgs
 
 # Save Hooks
-save-hook '~f nagios@status\.acm\.uiuc\.edu'    =Admin
-save-hook '~f logcheck@acm\.uiuc\.edu'          =Admin
-save-hook '~h root@.*\.?acm\.uiuc\.edu'         =Admin
-save-hook '~h admin@acm\.uiuc\.edu'             =Admin
-save-hook '~h webmaster@acm\.uiuc\.edu'         =Admin
-save-hook '~h mailmain@acm\.uiuc\.edu'          =Admin
-save-hook '~h news@(news)*\.acm\.uiuc\.edu'     =Admin
-save-hook '~t membership-l@acm\.uiuc\.edu'      =Membership
-save-hook '~t cluster-l@acm\.uiuc\.edu'         =Membership
-save-hook '~t jobs-l@acm\.uiuc\.edu'            =Membership
-save-hook '~h amp-l@acm\.uiuc\.edu'             =AMP
 save-hook '~f bugs@archlinux\.org'              =Arch
 save-hook '~f .*'                               =Save
 
