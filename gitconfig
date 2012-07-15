@@ -27,6 +27,7 @@
 
 	untrack-ignored = !git-untracked-ignored
 	info = !git-info
+	sparse = !git-sparse
 	amend = commit --amend -C HEAD
 	tree = log --graph --pretty=oneline
 	hist = log --graph --pretty=format:'%C(cyan)%h%Creset -%C(yellow)%d%Creset %s %C(magenta)[%an]%Creset %Cgreen(%ad)%Creset' --date=relative

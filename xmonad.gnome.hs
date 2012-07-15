@@ -6,7 +6,6 @@ import XMonad.Actions.CycleWS
 import XMonad.Layout.Grid
 import XMonad.Layout.Tabbed
 import XMonad.Layout.NoBorders(smartBorders)
-import XMonad.Layout.SimpleFloat
 
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.DynamicLog
@@ -20,20 +19,14 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell(shellPrompt)
 import XMonad.Prompt.Window
 
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageHelpers
+import XMonad.Config.Gnome
 
 import System.IO(hPutStrLn)
 
 -- Things that should always float
 myFloatHook = composeAll [
 	className =? "qemu" --> doFloat
-	, className =? "Smplayer" --> doFloat
-	, className =? "Wine" --> doFloat
-	, className =? "VirtualBox" --> doFloat
-	, className =? "Gimp" --> doFloat
 	, title =? "xfce4-notifyd" --> doIgnore
-	, isFullscreen --> doFullFloat
 	]
 
 myLayoutHook = tiled ||| Grid ||| simpleTabbed
@@ -51,25 +44,23 @@ myLayoutHook = tiled ||| Grid ||| simpleTabbed
 		delta   = 3/100
 
 main = do
-	xmproc <- spawnPipe "/usr/bin/xmobar"
-	xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
+	xmproc <- spawnPipe "xmobar"
+	xmonad $ withUrgencyHook NoUrgencyHook gnomeConfig
 			{ manageHook = manageDocks <+> myFloatHook <+> manageHook defaultConfig <+> scratchpadManageHook (W.RationalRect 0.25 0.25 0.5 0.5)
-			, layoutHook = avoidStruts $ smartBorders myLayoutHook
+			, layoutHook = avoidStruts $ smartBorders (layoutHook gnomeConfig)
 			, logHook    = dynamicLogWithPP $ xmobarPP
 				{ ppOutput = hPutStrLn xmproc
 				, ppUrgent = xmobarColor "#CC0000" "" . wrap "**" "**"
 				, ppTitle  = xmobarColor "#8AE234" "" . shorten 80
 				}
-			, modMask = mod4Mask
 			, terminal = "xterm"
 			, modMask = mod4Mask
-			, handleEventHook = fullscreenEventHook
 			}
 			`additionalKeysP`
 			[ ("M-p", shellPrompt defaultXPConfig { position = Top })
 			, ("M-S-a", windowPromptGoto defaultXPConfig { position = Top })
 			, ("M-a", windowPromptBring defaultXPConfig { position = Top })
-			, ("M-S-l", spawn "xscreensaver-command -lock")
+			, ("M-S-l", spawn "~/bin/lock")
 			, ("M-S-<Left>", shiftToPrev)
 			, ("M-S-<Right>", shiftToNext)
 			, ("M-<Up>", windows W.focusUp)
@@ -80,5 +71,4 @@ main = do
 			, ("M-s", moveTo Next EmptyWS)
 			, ("M-S-s", shiftTo Next EmptyWS)
 			, ("M-g", scratchpadSpawnAction defaultConfig { terminal = "xterm" })
-			, ("<XF86Launch1>", spawn "chromium")
 			]

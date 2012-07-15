@@ -68,6 +68,14 @@ set number                 " Show the line numbers
 
 set diffopt+=iwhite
 
+" ------ Pathogen -------
+"  Disable filetype so pathogen can load ftdetect modules
+"  Some system vimrcs do this too early
+if has('eval')
+   filetype off
+endif
+call pathogen#runtime_append_all_bundles()
+
 " ---- Filetypes ----
 if has('syntax')
    syntax on
@@ -115,7 +123,7 @@ if has('eval')
 endif
 
 if has('autocmd')
-   autocmd BufEnter * :call WideFold()
+   "autocmd BufEnter * :call WideFold()
    if has('eval')
       autocmd BufReadPost * :call s:DetectDetectIndent()
    endif
@@ -173,9 +181,9 @@ if has('eval')
    endfun
 
    if has("gui_running")
-      call LoadColorScheme("wombat:twilight256:desert")
+      call LoadColorScheme("wombat256mod:twilight256:desert")
    elseif &t_Co == 256
-      call LoadColorScheme("wombat:twilight256:inkpot")
+      call LoadColorScheme("wombat256mod:twilight256:inkpot")
    elseif &t_Co == 88
       call LoadColorScheme("wombat:zellner")
    else
@@ -213,10 +221,16 @@ if has('autocmd')
 
    " mutt does not like UTF-8
    autocmd BufRead,BufNewFile *
-      \ if &ft == 'mail' | set fileencoding=iso8859-1 | endif
+      \ if &ft == 'mail' | set fileencoding=iso8859-1 tw=72 | endif
 
    " fix up procmail rule detection
    autocmd BufRead procmailrc :setfiletype procmail
+
+   " fix up JSON rule detection
+   autocmd BufRead,BufNewFile *.json :setfiletype javascript
+
+   autocmd BufRead,BufNewFile *
+      \ if &ft == 'javascript' | set ts=4 sw=4 noet | endif
 endif
 
 " ---- cscope/ctags setup ----
@@ -358,6 +372,9 @@ nmap <silent> <F12> :silent set number!<CR>
 imap <silent> <F12> <C-O>:silent set number!<CR>
 noremap <silent> <F4> :set hls!<CR>
 
+" Map Explore to F2
+nmap <silent> <F2> :NERDTreeToggle<CR>
+
 " Don't force column 0 for #
 inoremap # X<BS>#
 
@@ -416,15 +433,22 @@ if v:version >= 700
    let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
    let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
    let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e. parameters) in popup window
-   map <C-F12> :!$HOME/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+   map <silent><F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
    " add current directory's generated tags file to available tags
-   set tags+=./tags
+   set tags+=tags;
+   set tags+=~/.vim/tags/gl
 endif
 
-set t_RV=
+" ----- Gundo -----
+nnoremap <F5> :GundoToggle<CR>
 
-set mouse=a
+" ------ Ack ------
+let g:ackprg="ack -H --nocolor --nogroup --column"
+set t_RV=
 
 set rtp+=/usr/local/go/misc/vim
 filetype plugin indent on
 syntax on
+
+" ------ BufExplorer ------
+nnoremap <F3> :BufExplorerVerticalSplit <CR>

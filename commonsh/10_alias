@@ -87,9 +87,7 @@ if command -v gobjdump >/dev/null 2>&1 ; then
 	alias objdump=gobjdump
 fi
 
-if command -v ack-grep >/dev/null 2>&1 ; then
-	alias ack=ack-grep
-fi
+command -v ack >/dev/null 2>&1 || (command -v ack-grep >/dev/null 2>&1 && alias ack=ack-grep)
 
 alias rm='rm -I'
 

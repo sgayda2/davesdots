@@ -47,3 +47,6 @@ setopt HIST_IGNORE_ALL_DUPS
 
 unsetopt HIST_BEEP
 unsetopt EXTENDED_HISTORY
+
+# no flow control
+unsetopt FLOW_CONTROL

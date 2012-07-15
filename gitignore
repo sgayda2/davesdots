@@ -2,6 +2,7 @@
 cscope.*
 ctags
 .DS_Store
+Thumbs.db
 *~
 tags
 .*.swo
