@@ -6,6 +6,7 @@ import XMonad.Actions.CycleWS
 import XMonad.Layout.Grid
 import XMonad.Layout.Tabbed
 import XMonad.Layout.NoBorders(smartBorders)
+import XMonad.Layout.SimpleFloat
 
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.DynamicLog
@@ -24,9 +25,12 @@ import System.IO(hPutStrLn)
 -- Things that should always float
 myFloatHook = composeAll [
 	className =? "qemu" --> doFloat
+	, className =? "Smplayer" --> doFloat
+	, className =? "Wine" --> doFloat
+	, className =? "VirtualBox" --> doFloat
 	]
 
-myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed
+myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed ||| simpleFloat
 	where
 		-- default tiling algorithm partitions the screen into two panes
 		tiled   = Tall nmaster delta ratio
@@ -41,7 +45,7 @@ myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed
 		delta   = 3/100
 
 main = do
-	xmproc <- spawnPipe "~/bin/xmobar"
+	xmproc <- spawnPipe "/usr/bin/xmobar"
 	xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
 			{ manageHook = manageDocks <+> myFloatHook <+> manageHook defaultConfig <+> scratchpadManageHook (W.RationalRect 0.25 0.25 0.5 0.5)
 			, layoutHook = avoidStruts $ smartBorders $ myLayoutHook
@@ -50,13 +54,14 @@ main = do
 				, ppUrgent = xmobarColor "#CC0000" "" . wrap "**" "**"
 				, ppTitle  = xmobarColor "#8AE234" ""
 				}
+			, modMask = mod4Mask
 			, terminal = "xterm"
 			}
 			`additionalKeysP`
 			[ ("M-p", shellPrompt defaultXPConfig { position = Top })
 			, ("M-S-a", windowPromptGoto defaultXPConfig { position = Top })
 			, ("M-a", windowPromptBring defaultXPConfig { position = Top })
-			, ("M-S-l", spawn "~/bin/lock")
+			, ("M-S-l", spawn "xscreensaver-command -lock")
 			, ("M-S-<Left>", shiftToPrev)
 			, ("M-S-<Right>", shiftToNext)
 			, ("M-<Up>", windows W.focusUp)
