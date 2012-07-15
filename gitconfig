@@ -41,7 +41,6 @@
 	pager = less -FRSX
 	excludesfile = ~/.gitignore
 	safecrlf = true
-	editor = "emacs"
 [push]
 	default = matching
 [merge]
