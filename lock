@@ -36,15 +36,15 @@ KDE_LOCK='kdesktop_lock --forcelock || krunner_lock --forcelock || /usr/libexec/
 GNOME_LOCK='gnome-screensaver-command --lock'
 XSCREEN_LOCK='xscreensaver-command -lock || xlock'
 
-if ps -e | grep gdm >/dev/null 2>/dev/null ; then
+if ps -e | grep -w gdm >/dev/null 2>/dev/null ; then
 	# looks like Gnome. They probably want gnome-screensaver.
 	# start gnome-screensaver to ensure it's running
 	gnome-screensaver >/dev/null 2>/dev/null
 	eval $GNOME_LOCK 2>/dev/null && exit
-elif ps -e | grep kdm >/dev/null 2>/dev/null ; then
+elif ps -e | grep -w kdm >/dev/null 2>/dev/null ; then
 	# looks like some version of KDE. They probably want kde's screensaver.
 	eval $KDE_LOCK 2>/dev/null && exit
-elif ps -e | grep xdm >/dev/null 2>/dev/null ; then
+elif ps -e | grep -w xdm >/dev/null 2>/dev/null || ps -e | grep -w xscreensaver >/dev/null 2>/dev/null ; then
 	xscreensaver & >/dev/null 2>/dev/null
 	eval $XSCREEN_LOCK 2>/dev/null && exit
 fi

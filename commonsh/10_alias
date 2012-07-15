@@ -89,8 +89,6 @@ fi
 
 command -v ack >/dev/null 2>&1 || (command -v ack-grep >/dev/null 2>&1 && alias ack=ack-grep)
 
-alias rm='rm -I'
-
 alias df='df -h'
 alias du='du -h'
 

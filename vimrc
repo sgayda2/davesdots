@@ -104,11 +104,11 @@ au FileType javascript setl fen
 
 if has('eval')
    fun! WideFold()
-      if winwidth(0) > 90
-         setlocal foldcolumn=1
-      else
-         setlocal foldcolumn=0
-      endif
+"      if winwidth(0) > 90
+"         setlocal foldcolumn=1
+"      else
+"         setlocal foldcolumn=0
+"      endif
    endfun
 
    let g:detectindent_preferred_expandtab = 0
@@ -358,7 +358,7 @@ if has('eval')
 endif
 
 " w!! for sudo w!
-"cmap w!! w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % >/dev/null
 
 " clear search
 "nnoremap <esc> :noh<return><esc>
