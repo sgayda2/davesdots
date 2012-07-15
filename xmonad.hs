@@ -28,6 +28,7 @@ myFloatHook = composeAll [
 	, className =? "Smplayer" --> doFloat
 	, className =? "Wine" --> doFloat
 	, className =? "VirtualBox" --> doFloat
+	, className =? "Gimp" --> doFloat
 	]
 
 myLayoutHook = tiled ||| Mirror tiled ||| Grid ||| simpleTabbed ||| simpleFloat

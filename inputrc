@@ -152,3 +152,5 @@ $if mode=emacs
 		"\e[4~": end-of-line
 	$endif
 $endif
+"\e[B": history-search-forward
+"\e[A": history-search-backward
