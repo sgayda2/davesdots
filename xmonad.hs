@@ -20,6 +20,7 @@ import XMonad.Prompt.Shell(shellPrompt)
 import XMonad.Prompt.Window
 
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageHelpers
 
 import System.IO(hPutStrLn)
 
@@ -27,6 +28,7 @@ import System.IO(hPutStrLn)
 myFloatHook = composeAll [
 	className =? "qemu" --> doFloat
 	, title =? "xfce4-notifyd" --> doIgnore
+	, isFullscreen --> doFullFloat
 	]
 
 myLayoutHook = tiled ||| Grid ||| simpleTabbed
