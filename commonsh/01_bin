@@ -1,4 +1,5 @@
 #! /bin/sh
 concat_path "${HOME}/bin"
 concat_path "${HOME}/sbin"
+concat_path "/usr/local/go/bin"
 concat_manpath "${HOME}/share/man"
