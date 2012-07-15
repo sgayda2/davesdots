@@ -104,4 +104,6 @@ alias uxoom='sudo umount /media/xoom'
 
 alias ping='ping -c4'
 
+alias open='xdg-open &>/dev/null'
+
 command -v time >/dev/null 2>&1 && alias time='command time'
