@@ -42,7 +42,7 @@
 	excludesfile = ~/.gitignore
 	safecrlf = true
 [push]
-	default = matching
+	default = upstream
 [merge]
 	tool = vimdiff
 [user]
