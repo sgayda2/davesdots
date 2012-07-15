@@ -72,4 +72,5 @@ main = do
 			, ("M-s", moveTo Next EmptyWS)
 			, ("M-S-s", shiftTo Next EmptyWS)
 			, ("M-g", scratchpadSpawnAction defaultConfig { terminal = "xterm" })
+			, ("<XF86Launch1>", spawn "chromium")
 			]
