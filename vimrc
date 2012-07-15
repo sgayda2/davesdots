@@ -390,3 +390,8 @@ if v:version >= 700
 endif
 
 set t_RV=
+
+
+set rtp+=/usr/local/go/misc/vim
+filetype plugin indent on
+syntax on
