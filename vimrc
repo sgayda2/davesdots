@@ -104,11 +104,11 @@ au FileType javascript setl fen
 
 if has('eval')
    fun! WideFold()
-"      if winwidth(0) > 90
-"         setlocal foldcolumn=1
-"      else
-"         setlocal foldcolumn=0
-"      endif
+      if winwidth(0) > 90
+         setlocal foldcolumn=1
+      else
+         setlocal foldcolumn=0
+      endif
    endfun
 
    let g:detectindent_preferred_expandtab = 0
