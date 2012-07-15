@@ -15,12 +15,30 @@ if has('multi_byte')      " Make sure we have unicode support
    set encoding=utf-8      " Default encoding should always be UTF-8
 endif
 
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+endif
 " ---- General Setup ----
+if version >= 600
+   set foldenable
+   set foldmethod=marker
+endif
 set nocompatible           " Don't emulate vi's limitations
 set tabstop=4              " 4 spaces for tabs
 set shiftwidth=4           " 4 spaces for indents
 set smarttab               " Tab next line based on current line
-"set expandtab             " Spaces for indentation
+set expandtab             " Spaces for indentation
 set autoindent             " Automatically indent next line
 if has('smartindent')
    set smartindent            " Indent next line based on current line
@@ -62,6 +80,20 @@ if has('eval')
 endif
 
 " ---- Folding ----
+function! JavaScriptFold() 
+   setl foldmethod=syntax
+   setl foldlevelstart=1
+   syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+   function! FoldText()
+      return substitute(getline(v:foldstart), '{.*', '{...}', '')
+   endfunction
+   setl foldtext=FoldText()
+endfunction
+au FileType javascript call JavaScriptFold()
+au FileType javascript setl fen
+
+
 if has('eval')
    fun! WideFold()
       if winwidth(0) > 90
@@ -391,6 +423,7 @@ endif
 
 set t_RV=
 
+set mouse=a
 
 set rtp+=/usr/local/go/misc/vim
 filetype plugin indent on
